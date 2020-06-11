@@ -1,7 +1,7 @@
-# fileserve
-A simple file service writed with go, like python `http.server`.
+# fileserver
+A simple file server writed with go, like python `http.server`.
 
-It will create file service in current directory.
+It will create file server in current directory.
 
 # Installation
 To install this package, you need to install Go and set your Go workspace first.
