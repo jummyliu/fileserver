@@ -1,7 +1,7 @@
 # fileserver
 A simple file server writed with go, like python `http.server`.
 
-It will create file server in current directory.
+It will create file server in current directory by default (http://0.0.0.0:8000).
 
 # Installation
 To install this package, you need to install Go and set your Go workspace first.
@@ -19,6 +19,8 @@ $ fileserve -h
   -addr string
         addr (default "0.0.0.0")
   -h    help
+  -path string
+        basic path (default ".")
   -port int
         port (default 8000)
 ```

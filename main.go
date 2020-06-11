@@ -7,11 +7,13 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"path/filepath"
 )
 
 var (
 	host string
 	port int
+	dir string
 	h bool
 	addr string
 )
@@ -19,6 +21,7 @@ var (
 func init() {
 	flag.StringVar(&host, "addr", "0.0.0.0", "addr")
 	flag.IntVar(&port, "port", 8000, "port")
+	flag.StringVar(&dir, "path", ".", "basic path")
 	flag.BoolVar(&h, "h", false, "help")
 
 	flag.Parse()
@@ -42,7 +45,7 @@ func (resp *Response) WriteHeader(code int) {
 }
 
 func fileServerHandler(resp http.ResponseWriter, req *http.Request) {
-	filePath := path.Join(".", req.URL.Path)
+	filePath, _ := filepath.Abs(path.Join(dir, req.URL.Path))
 	if file, err := os.Stat(filePath); err == nil && !file.IsDir() {
 		// modify response header
 		resp.Header().Add("Content-Disposition", "attachment;filename=" + file.Name())
